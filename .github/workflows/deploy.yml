@@ -1,14 +1,10 @@
 name: Deploy static content to Pages
 
 on:
-  # Se ejecuta al hacer push a la rama predeterminada (main)
   push:
     branches: ["main"]
-
-  # Permite ejecutar el flujo de trabajo manualmente desde la pestaña de Actions
   workflow_dispatch:
 
-# Configura los permisos del GITHUB_TOKEN para permitir el despliegue a GitHub Pages
 permissions:
   contents: read
   pages: write
@@ -27,14 +23,16 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4 
+
       - name: Setup Pages
         uses: actions/configure-pages@v5  
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Path
-          path: './src' 
+          path: './src/interfaces'  
+          destination_dir: '/' # Indica que el contenido debe ir a la raíz del deployment
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
