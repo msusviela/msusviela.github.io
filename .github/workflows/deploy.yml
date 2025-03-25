@@ -14,13 +14,11 @@ permissions:
   pages: write
   id-token: write
 
-# Solo se permite un despliegue concurrente, sin cancelar las ejecuciones en progreso.
 concurrency:
   group: "pages"
   cancel-in-progress: false
 
 jobs:
-  # Trabajo de despliegue
   deploy:
     environment:
       name: github-pages
@@ -28,13 +26,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4  # Obtiene el código del repositorio
+        uses: actions/checkout@v4 
       - name: Setup Pages
-        uses: actions/configure-pages@v5  # Configura GitHub Pages
+        uses: actions/configure-pages@v5  
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './src'  # Asegúrate de que ambas carpetas (interface y domain) estén dentro de ./src
+          # Path
+          path: './src' 
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
