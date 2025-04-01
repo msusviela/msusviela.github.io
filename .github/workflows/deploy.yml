@@ -30,7 +30,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './src/interfaces'  
+          path: './src'  
           destination_dir: '/' # Indica que el contenido debe ir a la raíz del deployment
 
       - name: Deploy to GitHub Pages
